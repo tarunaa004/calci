@@ -4,34 +4,39 @@ import { useHistory } from "react-router-dom";
 
 function Result(){
     const history = useHistory();
+    const value1 = parseFloat(useSelector(state => state.val1.value1));
+    const value2 = parseFloat(useSelector(state => state.val2.value2));
+    const operator = useSelector(state => state.val3.operator);
+    //upon refresh go back to default page
     useEffect(() =>{
         if(!operator)
         {
-            history.push('/')
+            history.push('/');
         }
     },[])
     const [answer,setAnswer]= useState({
         val:""
     });
-    const value1 = useSelector(state => state.val1.value1);
-    const value2 = useSelector(state => state.val2.value2);
-    const operator = useSelector(state => state.val3.operator);
     useEffect(() => {
         if(operator === '+'){
-            setAnswer({val: (parseFloat(value1) + parseFloat(value2))});
+            // setAnswer({val: (parseFloat(value1) + parseFloat(value2))});
+            setAnswer({val: (value1 + value2)});
         }
         if(operator === '-'){
-            setAnswer({val: (parseFloat(value1) - parseFloat(value2))});
+            // setAnswer({val: (parseFloat(value1) - parseFloat(value2))});
+            setAnswer({val: (value1 - value2)});
         }
         if(operator === '*'){
-            setAnswer({val: (parseFloat(value1) * parseFloat(value2))});
+            // setAnswer({val: (parseFloat(value1) * parseFloat(value2))});
+            setAnswer({val: (value1 * value2)});
         }
         if(operator === '/'){
-            setAnswer({val: (parseFloat(value1) / parseFloat(value2))});
+            // setAnswer({val: (parseFloat(value1) / parseFloat(value2))});
+            setAnswer({val: (value1 / value2)});
         }
     },[operator])
        return (
-        <div className="result">
+        <div>
             the result of {value1} {operator} {value2} is {answer.val}.
         </div>
     );

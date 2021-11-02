@@ -15,21 +15,20 @@ function Value2(){
     };
     const submit = (e) =>{
         e.preventDefault();
-        if(!isNaN(value2)){
-            dispatch(setResult2(value2));
-            console.log(value2);
-            history.push("/operat");
+        if(isNaN(value2) || value2===""){
+            alert("you have to enter number!");
         }
         else{
-            alert("enter numbers only");
+            dispatch(setResult2(value2));
+            history.push("/operat");
         }
     }
     return(
-    <div className="val-dets">
+    <div>
         <form>
             <label htmlFor="">Enter your value 2</label><br />
         <input type="text" placeholder="enter number2" onChange={getValue}/>
-        <button className="btn" onClick={submit}>enter</button>
+        <button onClick={submit}>enter</button>
         </form>
     </div>
     );
