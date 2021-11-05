@@ -1,16 +1,24 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { setOper } from "./redux/action";
+
 function Operat(){
-    const dispatch = useDispatch();
+    const value1 = useSelector(state => state.val1.value1);
     let history = useHistory();
+    useEffect(() =>{
+        if(history.location.state !== value1)
+        {
+            history.push('/');
+        }
+    },[])
+    const dispatch = useDispatch();
     const operator = useSelector(state => state.val3.operator);
 
     //function to handle options
     const handleChange = (e) =>{
         dispatch(setOper( e.target.value));
-        history.push("/result");
+        history.push("/result",e.target.value);
     }
     return(
         <div className = "options">

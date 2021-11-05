@@ -1,12 +1,19 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { setResult2 } from "./redux/action";
 import { useHistory } from "react-router-dom";
 import "./App.css"
 
 function Value2(){
-    const dispatch = useDispatch();
+    const value1 = useSelector(state => state.val1.value1);
     let history = useHistory();
+    useEffect(() =>{
+        if(history.location.state !== value1)
+        {
+            history.push('/');
+        }
+    },[])
+    const dispatch = useDispatch();
     const value2 = useSelector(state => state.val2.value2);
 
     //get the value inside the form
@@ -20,7 +27,7 @@ function Value2(){
         }
         else{
             dispatch(setResult2(value2));
-            history.push("/operat");
+            history.push("/operat",value1);
         }
     }
     return(

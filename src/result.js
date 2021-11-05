@@ -9,7 +9,7 @@ function Result(){
     const operator = useSelector(state => state.val3.operator);
     //upon refresh go back to default page
     useEffect(() =>{
-        if(!operator)
+        if(history.location.state !== operator)
         {
             history.push('/');
         }

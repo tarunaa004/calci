@@ -20,7 +20,7 @@ function Value1(){
         }
         else{
             dispatch(setResult1(value1));
-            history.push("/value2");
+            history.push("/value2",value1);
         }
 
     };
